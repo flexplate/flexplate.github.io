@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Automating version numbering in Visual Studio Deployment Projects
 
@@ -14,8 +14,11 @@ WinForms projects (and Windows programs in general) use a 4 part version number 
 First things first, we need to make VS handle the assembly’s version number. Bizzarely, the Assembly Information dialog you would usually use to change this will not accept the perfectly valid values we’re going to set it to so we’ll have to do it manually.
 
 In Solution Explorer, expand your application’s _Properties_ section and open the _AssemblyInfo.cs_ (or _.vb_, if that’s your preference) file. Right at the bottom, you should see annotations for  _AssemblyVersion_ and _AssemblyFileVersion_ along with a comment on how to set them dynamically. Following Microsoft’s guidance, we’re going to set AssemblyVersion’s third component to “*” and leave the fourth component blank, which will make Visual Studio set the third and fourth components automatically when the project is built. I’m going to comment out the AssemblyFileVersion too. If you do so, VS will set your file version to the same as the assembly version, giving us one less thing to deal with:
+![assemblyinfo.cs]({{ site.url }}/Images/2020-6-12-1-assemblyinfo.png)
 
 Just to confirm what we’ve done (you can skip this step if you so desire), double-click _My Project_, and in the _Application_ tab click _Assembly Information_. You should see your assembly version set to whatever you want your major and minor revisions to be, followed by an asterisk and an empty box, like so:
+
+![assembly info dialog]({{ site.url }}/Images/2020-6-12-2-assemblydialog.png)
 
 Click OK, save, close, we’re done.
 
@@ -140,7 +143,9 @@ Simple enough. Write it out.
 
 ### Build Events
 
-Here’s where we set it to work. Selecting our installer project in the Solution Explorer, we get these properties:installer-version-props
+Here’s where we set it to work. Selecting our installer project in the Solution Explorer, we get these properties:
+
+![properties dialog]({{ site.url }}/Images/2020-6-12-3-properties.png)
 
 The PreBuildEvent is the one we’re after, and hitting the ellipsis button brings us a neat little editor. “Neat”, because the event scripts have their own macros relating to the project directory and so on.
 
