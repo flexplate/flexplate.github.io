@@ -3,15 +3,13 @@ published: true
 layout: post
 title: Automating version numbering in Visual Studio Deployment Projects
 ---
-## Automating version numbering in Visual Studio Deployment Projects
-
 For many years, Visual Studio has had the option to automatically increment a project’s version number when building that project. However, deployment projects use their own version numbers and ignore the version number of the project they’re deploying. Here’s how you can automate the deployment project’s (and therefore the compiled MSI’s) version number to match the product you’re deploying.
 
-### A note on solution and MSI version numbers
+## A note on solution and MSI version numbers
 
 WinForms projects (and Windows programs in general) use a 4 part version number in the format `[major].[minor].[build].[revision]`. Windows Installers (MSIs) use a 3-part version number, `[major].[minor].[build]`. Because of this, when we get Visual Studio to increment the project’s version number we’re going to have to lose some information to get it into the MSI.
 
-### Automatically incrementing the assembly (project) version
+## Automatically incrementing the assembly (project) version
 
 First things first, we need to make VS handle the assembly’s version number. Bizzarely, the Assembly Information dialog you would usually use to change this will not accept the perfectly valid values we’re going to set it to so we’ll have to do it manually.
 
@@ -24,7 +22,7 @@ Just to confirm what we’ve done (you can skip this step if you so desire), dou
 
 Click OK, save, close, we’re done.
 
-### PackageCodes and ProductCodes and UpgradeCodes, oh my!
+## PackageCodes and ProductCodes and UpgradeCodes, oh my!
 
 In addition to a simple version number, internally an MSI has a number of related fields we should look at as well. These are:
 
@@ -37,7 +35,7 @@ In addition to a simple version number, internally an MSI has a number of relate
 
 For more information on these fields, pusu has written an excellent guide here: [https://blogs.msdn.microsoft.com/pusu/2009/06/10/what-are-upgrade-product-and-package-codes-used-for/]
 
-### The Plan
+## The Plan
 
 So, with all that explained, what do we need to accomplish?
 
@@ -47,11 +45,11 @@ So, with all that explained, what do we need to accomplish?
 
 And we need to do all of this after the application is built (so the version number is current), but before the MSI is compiled. Here’s how:
 
-### Set Up Your Installer
+## Set Up Your Installer
 
 No rocket science for this bit; make sure your install project is set up: Primary output from your main project in the application folder, shortcut in the programs menu, etc.
 
-### Stick To The Script!
+## Stick To The Script!
 
 We’re going to write a script to sort our versions and GUIDs that will run as a pre-build event of the installer, changing some variables in the project file before it’s compiled.
 
@@ -143,7 +141,7 @@ f.close
 
 Simple enough. Write it out.
 
-### Build Events
+## Build Events
 
 Here’s where we set it to work. Selecting our installer project in the Solution Explorer, we get these properties:
 
