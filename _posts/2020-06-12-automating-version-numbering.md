@@ -2,6 +2,10 @@
 published: true
 layout: post
 title: Automating version numbering in Visual Studio Deployment Projects
+show_downloads: false
+links:
+  - url: 'https://example.com'
+    text: TEST
 ---
 For many years, Visual Studio has had the option to automatically increment a project’s version number when building that project. However, deployment projects use their own version numbers and ignore the version number of the project they’re deploying. Here’s how you can automate the deployment project’s (and therefore the compiled MSI’s) version number to match the product you’re deploying.
 
