@@ -15,14 +15,16 @@ WinForms projects (and Windows programs in general) use a 4 part version number 
 
 ## Automatically incrementing the assembly (project) version
 
+We're going to make Visual Studio (or more accurately, MSBuild) handle the _build_ and _revision_ parts of the version number. As specified in [the docs](https://docs.microsoft.com/en-us/dotnet/api/system.reflection.assemblyversionattribute#remarks), accepting the defaults for these will set the build number to a value that increases daily (technically, the number of days since 1 January 2000) and the release number to the number of seconds since local midnight, divided by 2. Note that since the revision number is discarded by this script when we apply it to our MSI, building 2 MSIs on the same day will result in them having the same version number even if the assembly revisions are different. 
+
 First things first, we need to make VS handle the assembly’s version number. Bizzarely, the Assembly Information dialog you would usually use to change this will not accept the perfectly valid values we’re going to set it to so we’ll have to do it manually.
 
 In Solution Explorer, expand your application’s _Properties_ section and open the _AssemblyInfo.cs_ (or _.vb_, if that’s your preference) file. Right at the bottom, you should see annotations for  _AssemblyVersion_ and _AssemblyFileVersion_ along with a comment on how to set them dynamically. Following Microsoft’s guidance, we’re going to set AssemblyVersion’s third component to “*” and leave the fourth component blank, which will make Visual Studio set the third and fourth components automatically when the project is built. I’m going to comment out the AssemblyFileVersion too. If you do so, VS will set your file version to the same as the assembly version, giving us one less thing to deal with:
-![assemblyinfo.cs]({{ site.url }}/Images/2020-6-12-1-assemblyinfo.png)
+![assemblyinfo.cs]({{ site.url }}/images/2020-6-12-1-assemblyinfo.png)
 
 Just to confirm what we’ve done (you can skip this step if you so desire), double-click _My Project_, and in the _Application_ tab click _Assembly Information_. You should see your assembly version set to whatever you want your major and minor revisions to be, followed by an asterisk and an empty box, like so:
 
-![assembly info dialog]({{ site.url }}/Images/2020-6-12-2-assemblydialog.png)
+![assembly info dialog]({{ site.url }}/images/2020-6-12-2-assemblydialog.png)
 
 Click OK, save, close, we’re done.
 
@@ -37,7 +39,7 @@ In addition to a simple version number, internally an MSI has a number of relate
 + **PackageCode**
   This identifies a particular installer package – the MSI file on your disk. We’ll change it here but there are reasons you might not want to; see the link below.
 
-For more information on these fields, pusu has written an excellent guide here: [https://blogs.msdn.microsoft.com/pusu/2009/06/10/what-are-upgrade-product-and-package-codes-used-for/]
+For more information on these fields, pusu has written an excellent guide here: <https://blogs.msdn.microsoft.com/pusu/2009/06/10/what-are-upgrade-product-and-package-codes-used-for/>
 
 ## The Plan
 
@@ -57,7 +59,7 @@ No rocket science for this bit; make sure your install project is set up: Primar
 
 We’re going to write a script to sort our versions and GUIDs that will run as a pre-build event of the installer, changing some variables in the project file before it’s compiled.
 
-The script is available for download from [https://gist.github.com/therezin/f0334cc0c09bf79e58608935dbca9bd6]. I’ve commented it pretty extensively, but we’ll go through it. If you’re not interested in the inner workings, skip this section.
+The script is available for download from <https://gist.github.com/therezin/f0334cc0c09bf79e58608935dbca9bd6>. I’ve commented it pretty extensively, but we’ll go through it. If you’re not interested in the inner workings, skip this section.
 
 ``` vb
 option explicit
@@ -149,7 +151,7 @@ Simple enough. Write it out.
 
 Here’s where we set it to work. Selecting our installer project in the Solution Explorer, we get these properties:
 
-![properties dialog]({{ site.url }}/Images/2020-6-12-3-properties.png)
+![properties dialog]({{ site.url }}/images/2020-6-12-3-properties.png)
 
 The PreBuildEvent is the one we’re after, and hitting the ellipsis button brings us a neat little editor. “Neat”, because the event scripts have their own macros relating to the project directory and so on.
 
