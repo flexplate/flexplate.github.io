@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1>{{ page.title }}</h1>
+  {% if page.categories %}
+  <div class="categories-list">
+    Posted in 
+    {% for cat in page.categories %}
+      <a href="/{{ cat | absolute_url}}">{{ cat }}</a>
+    {% endfor %}
+  </div>
+{% endif %}
+
+  <div class="entry">
+    {{ content }}
+  </div>
+
+  <div class="date">
+    Written on {{ page.date | date: "%B %e, %Y" }}
+  </div>
+
+  {% include disqus.html %}
+</article>

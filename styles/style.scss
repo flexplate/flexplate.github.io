@@ -1,0 +1,73 @@
+---
+# Front matter so Jekyll knows this is here.
+...
+
+@import "_reset";
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+$green: #0e0;
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #000;
+    border-image-source: repeating-linear-gradient(34deg, #fff, #fff 16px, #000 16px, #000 32px);
+    border-left-width: 1em;
+    color: #fff;
+}
+
+header {
+    background-color: #0e0;
+    width: 100%;
+    color: #000;
+    h1 {
+        font-size: 5em;
+        font-family: VT323, monospace;
+    }
+}
+
+#wrapper {
+    background-color: #222;
+    color: #ddd;
+    margin: 0 2rem;
+    @media (prefers-color-scheme: light) {
+        background-color: #fff;
+        color: #000;
+    }
+}
+
+#social-links {
+    position: relative;
+    left: -10px;
+    top: -10px;
+    width: 50px;
+    float: left;
+}
+
+article {
+    margin: 1em;
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    h3 {
+        font-size: 1.25em;
+    }
+    h1,
+    h2,
+    h3 {
+        font-weight: bold;
+        margin-top: 1em;
+        margin-bottom: 0.75em;
+    }
+    p {
+        margin-bottom: 0.75em;
+    }
+    .categories-list {
+        text-align: right;
+    }
+}
+
+@import "_highlights";
+@import "_svg-icons";
