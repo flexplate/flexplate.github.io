@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: post
 title: Automating version numbering in .Net Standard/Core projects
 ---
