@@ -1,11 +1,12 @@
----
-# Front matter so Jekyll knows this is here.
-...
+--- 
+# Front matter so Jekyll knows this is here. 
+... 
 
 @import "_reset";
 @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 $green: #0e0;
+$darkgreen: #090;
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -16,19 +17,26 @@ body {
 }
 
 header {
-    background-color: #0e0;
+    background-color: $green;
     width: 100%;
     color: #000;
+
     h1 {
         font-size: 5em;
         font-family: VT323, monospace;
     }
 }
 
+#HazardStripes {
+    background: repeating-linear-gradient(140deg, #000 0, #000 16px, #fff 16px, #fff 32px);
+    display: none;
+}
+
 #wrapper {
     background-color: #222;
     color: #ddd;
     margin: 0 2rem;
+
     @media (prefers-color-scheme: light) {
         background-color: #fff;
         color: #000;
@@ -45,29 +53,59 @@ header {
 
 article {
     margin: 1em;
+
     h1 {
         font-size: 2em;
     }
+
     h2 {
         font-size: 1.5em;
     }
+
     h3 {
         font-size: 1.25em;
     }
+
     h1,
     h2,
     h3 {
         font-weight: bold;
         margin-top: 1em;
         margin-bottom: 0.75em;
+        color:$green;
     }
+
     p {
         margin-bottom: 0.75em;
     }
+
     .categories-list {
         text-align: right;
     }
 }
 
-@import "_highlights";
+@media screen and (min-width:600px) {
+    #HazardStripes {
+        display: block;
+        min-height: 100%;
+        width: 16px;
+        float: left;
+    }
+}
+
+@media screen and (max-width:600px) {
+    #HazardStripes {
+        display: block;
+        height: 16px;
+        min-width: 100%;
+    }
+}
+a:link {
+    color:$green;
+}
+a:visited{
+    color:$darkgreen;
+}
+
+@import "_highlight-monokai-dark";
 @import "_svg-icons";

@@ -2,6 +2,8 @@
 published: true
 layout: post
 title: Automating version numbering in .Net Standard/Core projects
+categories:
+ - Code
 ---
 Note: This is the second in an irregular series on automating version numbering. For part 1, [click here]({{ site.baseurl }}{% link _posts/2020-06-12-automating-version-numbering.md %})
 
