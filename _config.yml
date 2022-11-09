@@ -33,6 +33,7 @@ footer-links:
   twitter: therezin
   youtube: # channel/<your_long_string> or user/<user-name>
   kofi: flexplate
+  mastodon: mas.to/@flexplate
 
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
