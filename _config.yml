@@ -52,7 +52,7 @@ kramdown:
     css_class: 'highlight'
 
 sass:
-  style: expanded
+  style: compressed
   sass_dir: styles
 
 exclude:
