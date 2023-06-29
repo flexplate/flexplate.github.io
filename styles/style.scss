@@ -14,6 +14,14 @@ body {
     color: #fff;
 }
 
+a:link {
+    color: $green;
+}
+
+a:visited {
+    color: $darkgreen;
+}
+
 header {
     background-color: $green;
     width: 100%;
@@ -107,14 +115,6 @@ article {
         height: 16px;
         min-width: 100%;
     }
-}
-
-a:link {
-    color: $green;
-}
-
-a:visited {
-    color: $darkgreen;
 }
 
 @import "_highlight-monokai-dark";
