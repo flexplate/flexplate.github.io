@@ -1,5 +1,5 @@
 ---
-# Front matter so Jekyll knows this is here. 
+ # Front matter so Jekyll knows this is here.
 ...
 
 @import "_reset";
@@ -29,15 +29,19 @@ header {
     z-index: 20;
     position: relative;
 
-    h1, h1 a:visited {
+    h1 {
         font-size: 5em;
         font-family: VT323, monospace;
-        color: #000;
+    }
+
+    h1 a,
+    h1:visited {
         text-decoration: none;
+        color: #000;
     }
 
     p {
-         padding: 0 4px 4px 4px;
+        padding: 0 4px 4px 4px;
     }
 }
 
