@@ -21,7 +21,7 @@ header {
     z-index: 20;
     position: relative;
 
-    h1, h1 a {
+    h1, h1 a, h1 a:visited {
         font-size: 5em;
         font-family: VT323, monospace;
         color: #000;
